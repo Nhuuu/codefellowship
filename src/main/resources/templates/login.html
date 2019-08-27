@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+</head>
+<body>
+    <form method="GET" th:action="'/users/' + ${user.id}">
+        <input name="username">
+        <input name="password" type="password">
+        <input type="submit">
+    </form>
+</body>
+</html>
