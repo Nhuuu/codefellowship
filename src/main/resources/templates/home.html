@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1>Codefellowship</h1>
+    <p>CodeFellowship allows people learning to code to connect with each other and support each other on their
+        coding journeys.<p/>
+    
+    <div th:if="${user}">
+        Hello, <span th:text="${user.name}"></span>!
+        <a href="/logout">Logout</a>
+    </div>
+    
+    <div th:unless="${user}">
+        <a href="/login">Log in</a>
+        <a href="/signup">Sign up</a>
+    </div>
+
+</body>
+</html>
