@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -37,25 +38,21 @@ public class ApplicationUserController {
     return new RedirectView("/myprofile");
   }
 
-  @GetMapping("/signup")
-  public String getSignupPage(){
-    return "signup";
+//   TODO: check on this
+  @GetMapping("/myprofile")
+  public String getProfile(Principal p, Model m){
+    ApplicationUser applicationUser = null;
+    if(p != null){
+      applicationUser = applicationUserRepository.findByUsername(p.getName());
+    }
+    m.addAttribute("user", applicationUser);
+    return "myprofile";
   }
-
-  @GetMapping("/login")
-  public String getLoginPage(){
-    return "login";
-  }
-
 
   @GetMapping("/users/{id}")
   public String getOneUser(@PathVariable long id, Model m){
     ApplicationUser u = applicationUserRepository.findById(id).get();
-    m.addAttribute("user", u);
-    return "oneUser";
+    m.addAttribute("viewedUser", u);
+    return "myprofile";
   }
-
-//  Upon logging in, users should be taken to a /myprofile route that displays their information.
-//  Ensure that user registration also logs users into your app automatically.
-//  The site should be reasonably styled. (This can be using CSS that you did not create yourself.)
 }

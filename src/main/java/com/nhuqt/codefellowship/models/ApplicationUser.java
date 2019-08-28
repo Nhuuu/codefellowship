@@ -35,7 +35,6 @@ public class ApplicationUser implements UserDetails {
     this.bio = bio;
   }
 
-
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return null;
@@ -49,6 +48,54 @@ public class ApplicationUser implements UserDetails {
   @Override
   public String getUsername() {
     return this.username;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public String getFirstName() {
+    return this.firstName;
+  }
+
+  public String getLastName() {
+    return this.lastName;
+  }
+
+  public Date getDateOfBirth() {
+    return this.dateOfBirth;
+  }
+
+  public String getBio() {
+    return this.bio;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setDateOfBirth(Date dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  public void setBio(String bio) {
+    this.bio = bio;
   }
 
   @Override
