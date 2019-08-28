@@ -5,12 +5,17 @@
   <title>Profile</title>
 </head>
 <body>
-<!--  <div th:replace="fragments/nav :: nav"></div>-->
-  <h1 th:text="${user.username}"></h1>
+  <div th:replace="fragments/nav :: nav"></div>
+  <h1 th:text="${viewedUser.username}"></h1>
   <img src="https://placebear.com/g/200/300" alt="profile-pic">
-  <h4> <span th:text="${user.firstName}"> </span> <span th:text="${user.lastName}"></span></h4>
-  <h4> <span th:text="${user.dateOfBirth}"></span></h4>
-  <h4> About me: <span th:text="${user.bio}"></span></h4>
+  <h4> <span th:text="${viewedUser.firstName}"> </span> <span th:text="${viewedUser.lastName}"></span></h4>
+  <h4> <span th:text="${viewedUser.dateOfBirth}"></span></h4>
+  <h4> About me: <span th:text="${viewedUser.bio}"></span></h4>
+
+  <h4>My posts:</h4>
+  <ul>
+    <li th:each="post : ${viewedUser.posts}" th:text="'Created at ' + ${post.createdAt} + ': ' + ${post.body}">
+  </ul>
 
 </body>
 </html>

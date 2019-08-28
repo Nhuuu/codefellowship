@@ -20,7 +20,8 @@ public class HomeController {
     ApplicationUser applicationUser = null;
     if(p != null){
       applicationUser = applicationUserRepository.findByUsername(p.getName());
-      m.addAttribute("user", applicationUser);
+      m.addAttribute("viewedUser", applicationUser);
+      m.addAttribute("user", p);
       return "myprofile";
     }
     return "home";
@@ -35,6 +36,5 @@ public class HomeController {
   public String getLoginPage(){
     return "login";
   }
-
 
 }

@@ -38,21 +38,22 @@ public class ApplicationUserController {
     return new RedirectView("/myprofile");
   }
 
-//   TODO: check on this
   @GetMapping("/myprofile")
   public String getProfile(Principal p, Model m){
     ApplicationUser applicationUser = null;
     if(p != null){
       applicationUser = applicationUserRepository.findByUsername(p.getName());
     }
-    m.addAttribute("user", applicationUser);
+    m.addAttribute("viewedUser", applicationUser);
+    m.addAttribute("user", p);
     return "myprofile";
   }
 
   @GetMapping("/users/{id}")
-  public String getOneUser(@PathVariable long id, Model m){
+  public String getOneUser(@PathVariable long id, Principal p, Model m){
     ApplicationUser u = applicationUserRepository.findById(id).get();
     m.addAttribute("viewedUser", u);
+    m.addAttribute("user", p);
     return "myprofile";
   }
 }
