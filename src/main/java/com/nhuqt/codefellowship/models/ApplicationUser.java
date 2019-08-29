@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -21,12 +22,19 @@ public class ApplicationUser implements UserDetails {
   Date dateOfBirth;
   String bio;
 
-  public List<Post> getPosts() {
-    return posts;
-  }
-
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
   List<Post> posts;
+
+  @ManyToMany
+  @JoinTable(
+      name = "user_following",
+      joinColumns = {@JoinColumn(name ="primaryUser")},
+      inverseJoinColumns = {@JoinColumn(name = "followedUser")}
+  )
+  Set<ApplicationUser> followedUsers;
+
+  @ManyToMany(mappedBy = "followedUsers")
+  Set<ApplicationUser> userFollowers;
 
   public ApplicationUser(){}
 
@@ -38,6 +46,14 @@ public class ApplicationUser implements UserDetails {
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
     this.bio = bio;
+  }
+
+  public List<Post> getPosts() {
+    return posts;
+  }
+
+  public Set<ApplicationUser> getFollowedUsers() {
+    return followedUsers;
   }
 
   @Override
@@ -121,5 +137,9 @@ public class ApplicationUser implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  public void addFollow(ApplicationUser followUser){
+    followedUsers.add(followUser);
   }
 }
