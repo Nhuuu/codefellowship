@@ -56,4 +56,30 @@ public class ApplicationUserController {
     m.addAttribute("user", p);
     return "myprofile";
   }
+
+  @GetMapping("/users")
+  public String getAllUsers(Principal p, Model m){
+    if(p != null){
+      m.addAttribute("user", p);
+    }
+    m.addAttribute("allUsers", applicationUserRepository.findAll());
+    return "allUsers";
+  }
+
+  @PostMapping("/follow/{id}")
+  public RedirectView addFollowedUser(@PathVariable long id, Principal p){
+    ApplicationUser loggedInUser = applicationUserRepository.findByUsername(p.getName());
+    loggedInUser.addFollow(applicationUserRepository.findById(id).get());
+    applicationUserRepository.save(loggedInUser);
+    return new RedirectView("/myprofile");
+  }
+
+  @GetMapping("/feed")
+  public String getUserFeed(Principal p, Model m){
+    if(p != null){
+      m.addAttribute("user", p);
+    }
+    m.addAttribute("loggedInUser", applicationUserRepository.findByUsername(p.getName()));
+    return "feed";
+  }
 }

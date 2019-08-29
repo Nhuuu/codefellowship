@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Profile</title>
+  <title>User's Feed</title>
   <link rel="stylesheet" href="/style.css" type="text/css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
   <body>
-    <div th:replace="fragments/nav :: nav"></div>
+    <div th:include="fragments/nav :: nav"></div>
     <div class="container">
-      <div th:replace="fragments/user :: profile(userToProfile=${viewedUser})"></div>
+      <h1>My Feed</h1>
+      <div th:each="f : ${loggedInUser.followedUsers}">
+        <ul class="first-list">
+          <li>
+            <a th:href="'/users/' + ${f.id}"><h3 th:text="${f.username}"></h3></a>
+            <ul>
+              <li th:each="post : ${f.posts}" th:text="'Created at ' + ${post.createdAt} + ': ' + ${post.body}">
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

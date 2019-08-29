@@ -2,15 +2,18 @@
 <html lang="en">
 
   <div th:fragment="nav">
-    <a href="/">Home</a>
-    <nav th:if="${user}">
-      Hello, <a href="/myprofile"><span th:text="${user.name}"></span>!</a>
-      <a href="/posts">Add a Post</a>
-      <a href="/logout">Logout</a>
+    <nav class="nav" th:if="${user}">
+      Hello <a class="nav-link" href="/myprofile"><span th:text="${user.name}"></span>!</a>
+      <a href="/">Home</a>
+      <a class="nav-link" href="/posts">Add a Post</a>
+      <a class="nav-link" href="/users">All Users</a>
+      <a class="nav-link" href="/feed">Your Feed</a>
+      <a class="nav-link" href="/logout">Logout</a>
     </nav>
     <nav th:unless="${user}">
-      <a href="/login">Log in</a>
-      <a href="/signup">Sign up</a>
+      <a href="/">Home</a>
+      <a class="nav-link" href="/login">Log in</a>
+      <a class="nav-link" href="/signup">Sign up</a>
     </nav>
   </div>
 

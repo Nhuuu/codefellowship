@@ -3,37 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign up!</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
-<body>
-<form method="POST" action="/users">
-  <fieldset>
-    <legend>Sign up here!</legend>
-    <p>
-    <label for="username">Username:</label>
-    <input id="username" name="username">
-    </p>
-    <p>
-    <label for="password">Password:</label>
-    <input id="password" name="password" type="password">
-    </p>
-    <p>
-    <label for="firstName">First Name</label>
-    <input id="firstName" name="firstName">
-    </p>
-    <p>
-    <label for="lastName">Last Name</label>
-    <input id="lastName" name="lastName">
-    </p>
-    <p>
-    <label for="dateOfBirth">Birth Date:</label>
-    <input id="dateOfBirth" name="dateOfBirth" type="date">
-    </p>
-    <p>
-    <label for="bio">Bio</label>
-    <input id="bio" name="bio">
-    </p>
-    <input type="submit">
-  </fieldset>
-</form>
-</body>
+  <body>
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="container">
+      <h1>Sign up!</h1>
+      <form method="POST" action="/users">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input id="username" name="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input id="password" name="password" type="password">
+        </div>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input id="firstName" name="firstName">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName">
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Birth Date:</label>
+          <input id="dateOfBirth" name="dateOfBirth" type="date">
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <input id="bio" name="bio">
+        </div>
+        <input type="submit" class="btn btn-primary">
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
 </html>
