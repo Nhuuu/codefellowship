@@ -9,11 +9,12 @@
     <h4> Birth Date: <span th:text="${userToProfile.dateOfBirth}"></span></h4>
     <h4> About me: <span th:text="${userToProfile.bio}"></span></h4>
   
-    <h4>Posts:</h4>
-    <ul>
-      <li th:each="post : ${userToProfile.posts}" th:text="'Created at ' + ${post.createdAt} + ': ' + ${post.body}">
-    </ul>
-
+    <div th:if="${userToProfile.posts != null && userToProfile.posts.size() > 0}">
+      <h4>Posts:</h4>
+      <ul>
+        <li th:each="post : ${userToProfile.posts}" th:text="'Created at ' + ${post.createdAt} + ': ' + ${post.body}">
+      </ul>
+    </div>
   </div>
 
 </html>
