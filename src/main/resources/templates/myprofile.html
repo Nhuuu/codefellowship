@@ -12,8 +12,7 @@
       
       <div th:replace="fragments/user :: profile(userToProfile=${viewedUser})"></div>
       
-      <form method="post" th:action="'/follow/' + ${viewedUser.id}"
-            th:if="${viewedUser.username != user.name}">
+      <form method="post" th:action="'/follow/' + ${viewedUser.id}" th:if="${viewedUser.username != user.name}">
         <button type="submit" class="btn btn-primary">Follow</button>
       </form>
       
